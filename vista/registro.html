@@ -11,7 +11,7 @@
         body {
             color: white;
             font-family: fantasy;
-            background-image: url('../images/fondologin.gif');
+            background-image: url('../images/fondoregistro.gif');
             background-size: cover;
             height: 100%;
         }
@@ -28,7 +28,10 @@
             <p>Contraseña</p>
             <p><input type="password" name="password" id="password" style="background-color:rgba(0,0,0,0)"
                     class="border border-primary" required></p>
-            <input type="submit" value="Iniciar sesión" class="btn btn-primary">
+            <p>Teléfono</p>
+            <p><input type="tel" name="phonenumber" id="phonenumber" style="background-color:rgba(0,0,0,0)"
+                    class="border border-primary" pattern="[0-9]{9}" required></p>
+            <input type="submit" value="Registrarse" class="btn btn-primary">
             <br>
         </div>
     </form>
