@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-5.2.3-dist/css/bootstrap.css">
+    <style>
+        body {
+            color: white;
+            font-family: fantasy;
+            background-image: url('../images/fondologin.gif');
+            background-size: cover;
+            height: 100%;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <form action="" method="post">
+        <div class="text-center position-absolute top-50 start-50 translate-middle">
+            <br>
+            <p>Nombre de usuario (Correo electrónico)</p>
+            <p><input type="text" name="user" id="user" style="background-color:rgba(0,0,0,0)"
+                    class="border border-primary"></p>
+            <p>Contraseña</p>
+            <p><input type="text" name="password" id="password" style="background-color:rgba(0,0,0,0)"
+                    class="border border-primary"></p>
+            <input type="submit" value="Iniciar sesión" class="btn btn-primary">
+            <br>
+        </div>
+    </form>
 </body>
+
 </html>
