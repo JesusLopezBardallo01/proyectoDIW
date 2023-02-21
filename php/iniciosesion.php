@@ -28,7 +28,7 @@
         die("No hay conexión: ".mysqli_connect_error());
     }
     //SE BUSCA EN LA BASE DE DATOS EL USUARIO
-    $query= mysqli_query($conn,"Select email from usuarios where email='".$user."'");
+    $query= mysqli_query($conn,"Select password from usuarios where email='".$user."'");
 
     //SE ALMACENA EL NUMERO DE FILAS DEVUELTO
     $nr=mysqli_num_rows($query);
@@ -37,7 +37,7 @@
     $pass=mysqli_fetch_row($query);
 
     //SI LOS CAMPOS USUARIO Y CONTRASEÑA DEL FORMULARIO NO ESTAN VACIOS
-    if ($usuario!=NULL && $password!=NULL) {
+    if ($user!=NULL && $password!=NULL) {
 
         //SI EL NUMERO DE FILAS DEVUELTO POR LA CONSULTA ES MAYOR DE 0 SE DECLARA UNA VARIABLE QUE COMPARA LAS CONTRASEÑAS
         if ($nr>0) {
@@ -55,22 +55,16 @@
 
     //SI LAS CONTRASEÑAS COINCIDEN SE CREA UNA SESION QUE ALMACENA LOS DATOS Y SE REDIRIGE 
     if ($verificar) {
-        if (password_verify($password, $pass[0])) {
             session_start();
             $_SESSION['usuario']=$_POST['usuario'];
             $_SESSION['password']=$_POST['password'];                
             $_SESSION['iniciosesion']=$datos;
-            header("location: login.php");
-        //SI NO SE MUESTRA UN ENLACE PARA VOLVER A INTENTAR INICIAR SESION
-        }else{
-            echo "DATOS INCORRECTOS";
-            echo "<br><a href='login.html'> Volver a intentarlo </a>";
-            die();
-        }
+            header("location: ../vista/index.html");
+        
         //SI NO SE MUESTRA UN ENLACE PARA VOLVER A INTENTAR INICIAR SESION
     } else {
         echo "DATOS INCORRECTOS";
-            echo "<br><a href='login.html'> Volver a intentarlo </a>";
+            echo "<br><a href='../vista/login.html'> Volver a intentarlo  </a>" ;
             die();
     }
     
