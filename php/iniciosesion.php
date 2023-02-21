@@ -8,8 +8,6 @@
 </head>
 <body>
     <?php
-
-
     //DATOS DE CONEXION A LA BASE DE DATOS
     $nombre="localhost";
     $bd="magic";
