@@ -57,7 +57,7 @@
             $_SESSION['usuario']=$_POST['usuario'];
             $_SESSION['password']=$_POST['password'];                
             $_SESSION['iniciosesion']=$datos;
-            header("location: ../vista/index.html");
+            header("location: ../vista/home.html");
         
         //SI NO SE MUESTRA UN ENLACE PARA VOLVER A INTENTAR INICIAR SESION
     } else {
