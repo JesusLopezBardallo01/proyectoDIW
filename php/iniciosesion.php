@@ -64,7 +64,7 @@
         //SI NO SE MUESTRA UN ENLACE PARA VOLVER A INTENTAR INICIAR SESION
     } else {
         echo "DATOS INCORRECTOS";
-            echo "<br><a href='../vista/login.html'> Volver a intentarlo  </a>" ;
+            echo "<br><a href='../vista/login.html'> Volver a intentarlo  </a>";
             die();
     }
     
