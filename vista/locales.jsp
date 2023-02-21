@@ -11,12 +11,9 @@
         body {
             color: white;
             font-family: fantasy;
-            background-image: url('../images/fondologin.gif');
+            background-image: url('../images/fondoregistro.gif');
             background-size: cover;
             height: 100%;
-        }
-        nav{
-            background-color: rgb(255, 255, 255);
         }
     </style>
 </head>
@@ -43,19 +40,7 @@
           </div>
         </div>
       </nav>
-    <form action="./php/iniciosesion.php" method="post">
-        <div class="text-center position-absolute top-50 start-50 translate-middle">
-            <br>
-            <p>Nombre de usuario (Correo electrónico)</p>
-            <p><input type="email" name="user" id="user" style="background-color:rgba(0,0,0,0)"
-                    class="border border-primary" required></p>
-            <p>Contraseña</p>
-            <p><input type="password" name="password" id="password" style="background-color:rgba(0,0,0,0)"
-                    class="border border-primary" required></p>
-            <input type="submit" value="Iniciar sesión" class="btn btn-primary">
-            <br>
-        </div>
-    </form>
+   
 
     <div class="pie bg-light fixed-bottom">
         <div class="container-fluid mt-1 text-center">
@@ -67,6 +52,8 @@
             </footer>
         </div>
     </div>
+
+
 </body>
 
 </html>
