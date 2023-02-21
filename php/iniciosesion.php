@@ -27,7 +27,6 @@
     if (!$conn) {
         die("No hay conexión: ".mysqli_connect_error());
     }
-
     //SE BUSCA EN LA BASE DE DATOS EL USUARIO
     $query= mysqli_query($conn,"Select email from usuarios where email='".$user."'");
 
