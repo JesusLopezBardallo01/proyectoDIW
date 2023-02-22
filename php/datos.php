@@ -1,8 +1,8 @@
 <?php
 // Configuración de la base de datos
-$host = "localhost:3360";
+$host = "localhost:3306";
 $user = "root";
-$password = "localhost:3306";
+$password = "";
 $database = "magic";
 
 // Conexión a la base de datos
@@ -15,15 +15,17 @@ if ($mysqli->connect_errno) {
 }
 
 // Consulta para obtener los datos de la tabla "locales"
-$sql = "SELECT nombre, imagen FROM locales";
+$sql = "SELECT nombre,  latitud, longitud FROM locales";
 $resultado = mysqli_query($mysqli, $sql);
 
 // Crear un array para almacenar los datos de los locales
 $locales = array();
 while ($local = mysqli_fetch_assoc($resultado)) {
+  
   $locales[] = $local;
 }
 
 // Devolver los datos de los locales en formato JSON
+header('Content-Type: application/json');
 echo json_encode($locales);
 ?>
