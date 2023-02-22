@@ -24,7 +24,7 @@ if ($nr==0) {
     echo("El registro se ha realizado correctamente");
     header("Location:"."../vista/index.html");
 } else {
-    echo("Ya hay un usuario con ese correo");
+    header("Location:"."../vista/errorregistro.html");
 }
     if (!$conexion) {
         die("No hay conexción: ".mysqli_connect_error());
