@@ -97,10 +97,10 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
                 });
             });
 
-            // Función para agregar el mazo al hacer clic en el botón
+
             $('.agregar-mazo').click(function () {
                 var nombre_mazo = $(this).prev('.mazo').text();
-                // Aquí puedes agregar el código para guardar el nombre del mazo
+                
                 alert('Se ha seleccionado el mazo.');
             });
         });
@@ -118,7 +118,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
         var fechaFin = document.getElementsByName("fechafin")[0];
         var btnAgregar = document.getElementsByClassName("agregar-mazo")[0];
 
-        // Establecer la fecha mínima y máxima para el campo de entrada de fecha de fin
+        
         fechaInicio.addEventListener("input", function () {
             fechaFin.min = fechaInicio.value;
             if (fechaFin.value < fechaFin.min) {
@@ -126,7 +126,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
             }
         });
 
-        // Establecer la fecha mínima y máxima para el campo de entrada de fecha de inicio
+        
         fechaFin.addEventListener("input", function () {
             fechaInicio.max = fechaFin.value;
             if (fechaInicio.value > fechaInicio.max) {
