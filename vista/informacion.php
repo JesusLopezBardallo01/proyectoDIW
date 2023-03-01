@@ -77,7 +77,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
         cartas magic para llevar a cabo esta idea, al darnos cuenta de que hay una gran grieta en cuanto al alquiler de
         cartas se refiere y hemos pensado que mucha gente<br>
         puede estar interesada ya que se puede aprovechar para participar en torneos gastando una ínfima cantidad de
-        dinero.<br>
+        <br>dinero, además del añadido de la sorpresa de las cartas que toquen ya que nuestros mazos se componen con cartas del competitivo aleatorias.<br>
     </div>
     <br>
     <img src="../images/torneo.jpg" alt="Torneo" class="mx-auto d-block" height="700" width="1000">

@@ -38,40 +38,111 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-warning">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="../images/logo.png" alt="Bootstrap" width="100" height="75">
-      </a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="../vista/home.php">Home</a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../vista/locales.php">Locales</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../vista/cartas.php">Cartas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../vista/informacion.php">Sobre Nosotros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link btn btn-danger" href="../php/logout.php">Cerrar sesión</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <br>
-  <footer class="p-5 bg-warning">
+    <nav class="navbar navbar-expand-lg bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/logo.png" alt="Bootstrap" width="100" height="75">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../vista/home.php">Home</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../vista/locales.php">Locales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../vista/cartas.php">Cartas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../vista/informacion.php">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger" href="../php/logout.php">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Función para cargar las cartas al hacer clic en un mazo
+            $('.mazo').click(function () {
+                var nombre_mazo = $(this).text();
+                var url_api = 'https://api.scryfall.com/cards/search?q=is%3Abooster';
+                $.getJSON(url_api, function (data) {
+                    var cartas = data.data;
+                    var num_cartas = 60;
+                    var random_cards = [];
+                    for (var i = 0; i < num_cartas; i++) {
+                        random_cards.push(cartas[Math.floor(Math.random() * cartas.length)]);
+                    }
+                    var html = '';
+                    for (var i = 0; i < random_cards.length; i++) {
+                        if (random_cards[i].image_uris) {
+                            html += '<div class="col-md-4"><img src="' + random_cards[i].image_uris.normal + '" alt="' + random_cards[i].name + '"></div>';
+                        } else {
+                            html += '<div class="col-md-4"><p>' + random_cards[i].name + '</p></div>';
+                        }
+                        if ((i + 1) % 3 == 0) {
+                            html += '</div><div class="row">';
+                        }
+                    }
+                    $('#cartas').html('<h4>Cartas:</h4><div class="row">' + html + '</div>');
+                    $('#nombre_mazo').html(nombre_mazo);
+                });
+            });
 
-    <p class="text-end mt-1 text-dark text-center" style="font-size: 25px">
-      Daniel García Vázquez y Jesús López Bardallo<i class='bx bx-copyright'></i>
-    </p>
-  </footer>
+            // Función para agregar el mazo al hacer clic en el botón
+            $('.agregar-mazo').click(function () {
+                var nombre_mazo = $(this).prev('.mazo').text();
+                // Aquí puedes agregar el código para guardar el nombre del mazo
+                alert('Se ha seleccionado el mazo.');
+            });
+        });
+    </script>
+    <br>
+    <form action="../php/registropedido.php" method="post">
+        <ul>
+            <li class="mazo">Generar un mazo </li>Fecha de inicio:<input type="date" name="fechainicio"
+                required>&ensp;Fecha de fin:<input type="date" name="fechafin" required>&ensp;<button
+                class="agregar-mazo">Agregar</button>
+        </ul>
+    </form>
+    <script>
+        var fechaInicio = document.getElementsByName("fechainicio")[0];
+        var fechaFin = document.getElementsByName("fechafin")[0];
+        var btnAgregar = document.getElementsByClassName("agregar-mazo")[0];
+
+        // Establecer la fecha mínima y máxima para el campo de entrada de fecha de fin
+        fechaInicio.addEventListener("input", function () {
+            fechaFin.min = fechaInicio.value;
+            if (fechaFin.value < fechaFin.min) {
+                fechaFin.value = fechaFin.min;
+            }
+        });
+
+        // Establecer la fecha mínima y máxima para el campo de entrada de fecha de inicio
+        fechaFin.addEventListener("input", function () {
+            fechaInicio.max = fechaFin.value;
+            if (fechaInicio.value > fechaInicio.max) {
+                fechaInicio.value = fechaInicio.max;
+            }
+        });
+    </script>
+    <h2 id="nombre_mazo"></h2>
+    <div id="cartas"></div>
+    <footer class="p-5 bg-warning">
+
+        <p class="text-end mt-1 text-dark text-center" style="font-size: 25px">
+            Daniel García Vázquez y Jesús López Bardallo<i class='bx bx-copyright'></i>
+        </p>
+    </footer>
+
 </body>
 
 </html>
