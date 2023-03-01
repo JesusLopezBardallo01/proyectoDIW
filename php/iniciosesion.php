@@ -54,10 +54,9 @@
     //SI LAS CONTRASEÑAS COINCIDEN SE CREA UNA SESION QUE ALMACENA LOS DATOS Y SE REDIRIGE 
     if ($verificar) {
             session_start();
-            $_SESSION['usuario']=$_POST['usuario'];
+            $_SESSION['usuario']=$_POST['user'];
             $_SESSION['password']=$_POST['password'];                
-            $_SESSION['iniciosesion']=$datos;
-            header("location: ../vista/home.html");
+            header("location: ../vista/home.php");
         
         //SI NO SE MUESTRA UN ENLACE PARA VOLVER A INTENTAR INICIAR SESION
     } else {

@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
+
+} else {
+  header("location: ../vista/errorlogin.html");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +30,16 @@
     nav {
       background-color: rgb(255, 255, 255);
     }
+
+    body {
+      font-family: 'Langar';
+      font-size: 22px;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg ">
+  <nav class="navbar navbar-expand-lg bg-warning">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../images/logo.png" alt="Bootstrap" width="100" height="75">
@@ -31,45 +47,86 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="../vista/home.html">Home</a>
+            <a class="nav-link" href="../vista/home.php">Home</a>
           </li>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../vista/locales.html">Locales</a>
+            <a class="nav-link" href="../vista/locales.php">Locales</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Cartas</a>
+            <a class="nav-link" href="../vista/cartas.php">Cartas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Sobre Nosotros</a>
+            <a class="nav-link" href="../vista/informacion.php">Sobre Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-danger" href="../php/logout.php">Cerrar sesión</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <br>
+  <h1 class="text-center">BIENVENIDO A NUESTRO SITIO WEB</h1>
+
+  <br>
+
+  <div class="text-center"><strong>Tu sitio de confianza para alquiler de cartas a precio competitivo</strong></div><br>
+
+
   <div class="container">
-    <input id="search-box" type="text" placeholder="Buscar...">
-    <br><br>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="map" style="height: 400px;width: 550px"></div>
-        <script src="../vista/script.js"></script>
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqJCsU1LscVa4cmH5EV8RkBUg22jtFTDM&callback=initMap&libraries=places&v=weekly"></script>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
       </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../images/ajani.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../images/chandra.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="../images/tia.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
       <div class="col-md-6">
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                 aria-expanded="true" aria-controls="collapseOne">
-                Local en Lebrija
+                Planeswalker
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
               data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>10 Av. Océano Atlántico</strong>
+                <strong>Es un tipo de carta permanente que representa a uno de los tipos de seres más poderosos en la
+                  trama de Magic.</strong>
               </div>
             </div>
           </div>
@@ -77,13 +134,14 @@
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Local en Cadiz
+                Hechizos,Instantáneos y Encantamientos
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
               data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>16 Av. las Cortes de Cádiz</strong>
+                <strong>Los hechizos instantáneos tienen la misma definición que los conjuros con una única diferencia,
+                  y es que los hechizos instantáneos pueden ser ejecutados en cualquier momento.</strong>
               </div>
             </div>
           </div>
@@ -91,13 +149,16 @@
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Local en Trebujena
+                Criaturas
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
               data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>32 Av. de Chipiona</strong>
+                <strong>Las criaturas son unos hechizos permanentes, con una fuerza y una resistencia determinadas. La
+                  resistencia marca el número de puntos que tiene que recibir para que sea destruida, y el ataque señala
+                  el daño que puede causar esa criatura.Algunas criaturas también tienen habilidades fuera de las 5
+                  básicas, que se juegan como hechizos instantáneos.</strong>
               </div>
             </div>
           </div>
@@ -105,13 +166,14 @@
             <h2 class="accordion-header" id="headingFour">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                Local en Jerez
+                Tierras
               </button>
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
               data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>50 C. Gravina</strong>
+                <strong>Las tierras son los permanentes con los que pagas los costes de ejecución del resto de
+                  hechizos.</strong>
               </div>
             </div>
           </div>
@@ -119,39 +181,35 @@
             <h2 class="accordion-header" id="headingFive">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                Local en Sevilla
+                Artefactos
               </button>
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
               data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>26 C. Muro de los Navarros</strong>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingSix">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                Local en Marte
-              </button>
-            </h2>
-            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-              data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <strong><a href="https://www.starhomes.rocks">Featuring StarHomes</a></strong>
+                <strong>Los artefactos son permanentes con diversas habilidades. Que se pueden jugar como hechizos
+                  instantáneos.</strong>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <img src="../images/cartas.jpg" class="d-block w-100" alt="...">
+      </div>
     </div>
   </div>
-  <footer class="p-5">
+
+
+  <br>
+
+  <footer class="p-5 bg-warning">
+
     <p class="text-end mt-1 text-dark text-center" style="font-size: 25px">
       Daniel García Vázquez y Jesús López Bardallo<i class='bx bx-copyright'></i>
     </p>
   </footer>
+
 </body>
 
 </html>
