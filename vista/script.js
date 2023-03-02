@@ -43,7 +43,23 @@ function initMap() {
       const marker = new google.maps.Marker({
         position: { lat: parseFloat(local.latitud), lng: parseFloat(local.longitud) }, // coordenadas del marcador
         map: map, // mapa donde se agrega el marcador
-        icon: local.imagen, // imagen del marcador
+        icon: {
+          url: local.imagen, // imagen del marcador
+          scaledSize: new google.maps.Size(100, 100), // tamaño del marcador
+        },
+      });
+
+      // Agregar evento click al marcador
+      marker.addListener('click', () => {
+        const infowindow = new google.maps.InfoWindow({
+          content: `
+            <div>
+              <h3>${local.nombre}</h3>
+              <img src="${local.imagen}" alt="${local.nombre}" width="100" height="100" />
+            </div>
+          `,
+        });
+        infowindow.open(map, marker);
       });
     });
   })

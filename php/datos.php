@@ -15,7 +15,7 @@ if ($mysqli->connect_errno) {
 }
 
 // Consulta para obtener los datos de la tabla "locales"
-$sql = "SELECT nombre,  latitud, longitud FROM locales";
+$sql = "SELECT nombre,  latitud, longitud,imagen FROM locales";
 $resultado = mysqli_query($mysqli, $sql);
 
 // Crear un array para almacenar los datos de los locales
