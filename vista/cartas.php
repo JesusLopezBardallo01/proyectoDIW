@@ -68,6 +68,32 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
     <br>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <?php
+    $nombre = "localhost";
+    $bd = "magic";
+    $user = "root";
+    $pass = "";
+
+    $conn = mysqli_connect($nombre, $user, $pass, $bd);
+
+    if (!$conn) {
+        die("No hay conexión: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT fecha_inicio, fecha_fin FROM mazos_alquilados";
+    $resultado = $conn->query($sql);
+
+    if ($resultado->num_rows > 0) {
+        echo "<h1>Fechas en uso:</h1>";
+        echo "<ul>";
+        while ($fila = $resultado->fetch_assoc()) {
+            echo "<li>Fecha de inicio: " . $fila["fecha_inicio"] . " | Fecha de fin: " . $fila["fecha_fin"] . "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "No hay fechas en uso.";
+    }
+    ?>
     <script>
         $(document).ready(function () {
             // Función para cargar las cartas al hacer clic en un mazo
@@ -136,19 +162,19 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
                 fechaInicio.value = fechaInicio.max;
             }
         });
-        
+
         const mazoBtn = document.querySelector('.mazo');
 
-        
+
         mazoBtn.addEventListener('click', function () {
-            
+
             const num = Math.floor(Math.random() * (17 - 7 + 1)) + 7;
 
-            
+
             const label = document.getElementById('numero-generado');
 
             const precio = document.getElementById('precio');
-            
+
             label.innerHTML = num + "€";
             precio.value = num + "€";
         });
