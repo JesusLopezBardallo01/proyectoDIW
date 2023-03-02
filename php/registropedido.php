@@ -18,8 +18,9 @@
     //$fechaAlta= date('Y-m-d');
     $fechainicio = $_POST["fechainicio"];
     $fechafin = $_POST["fechafin"];
+    $precio = $_POST["precio"];
 
-    $query = "INSERT INTO mazos_alquilados(fecha_inicio,fecha_fin) values ('$fechainicio','$fechafin')";
+    $query = "INSERT INTO mazos_alquilados(fecha_inicio,fecha_fin,precio) values ('$fechainicio','$fechafin','$precio')";
     $registro = mysqli_query($conexion, $query);
     echo ("El registro del pedido se ha realizado correctamente");
     header("Location:" . "../vista/index.html");

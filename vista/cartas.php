@@ -100,7 +100,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
 
             $('.agregar-mazo').click(function () {
                 var nombre_mazo = $(this).prev('.mazo').text();
-                
+
                 alert('Se ha seleccionado el mazo.');
             });
         });
@@ -108,9 +108,12 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
     <br>
     <form action="../php/registropedido.php" method="post">
         <ul>
-            <li class="mazo">Generar un mazo </li>Fecha de inicio:<input type="date" name="fechainicio"
-                required>&ensp;Fecha de fin:<input type="date" name="fechafin" required>&ensp;<button
-                class="agregar-mazo">Agregar</button>
+            <li class="mazo">Generar un mazo</li>
+            Fecha de inicio: <input type="date" name="fechainicio" required>&ensp;
+            Fecha de fin: <input type="date" name="fechafin" required>&ensp;
+            <label id="numero-generado"></label>&ensp;
+            <button class="agregar-mazo">Agregar</button>
+            <input type="text" name="precio" id="precio" style="visibility: hidden;">
         </ul>
     </form>
     <script>
@@ -118,7 +121,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
         var fechaFin = document.getElementsByName("fechafin")[0];
         var btnAgregar = document.getElementsByClassName("agregar-mazo")[0];
 
-        
+
         fechaInicio.addEventListener("input", function () {
             fechaFin.min = fechaInicio.value;
             if (fechaFin.value < fechaFin.min) {
@@ -126,12 +129,28 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['password'])) {
             }
         });
 
-        
+
         fechaFin.addEventListener("input", function () {
             fechaInicio.max = fechaFin.value;
             if (fechaInicio.value > fechaInicio.max) {
                 fechaInicio.value = fechaInicio.max;
             }
+        });
+        
+        const mazoBtn = document.querySelector('.mazo');
+
+        
+        mazoBtn.addEventListener('click', function () {
+            
+            const num = Math.floor(Math.random() * (17 - 7 + 1)) + 7;
+
+            
+            const label = document.getElementById('numero-generado');
+
+            const precio = document.getElementById('precio');
+            
+            label.innerHTML = num + "€";
+            precio.value = num + "€";
         });
     </script>
     <h2 id="nombre_mazo"></h2>
